@@ -12,7 +12,7 @@ export default function EventPage({ evt }) {
 
   return (
     <Layout>
-      <div className={styles.eveny}>
+      <div className={styles.event}>
         <div className={styles.controls}>
           <Link href={`/events/edit/${evt.id}`}>
             <a>
