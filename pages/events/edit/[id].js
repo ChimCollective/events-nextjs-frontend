@@ -52,7 +52,7 @@ export default function EditEventPage({ evt }) {
             toast.error('Something Went Wrong')
         } else {
             const evt = await res.json()
-            router.push(`/evemts/${evt.slug}`)
+            router.push(`/events/${evt.slug}`)
         }
     }
     const handleInputChange = (e) => {
