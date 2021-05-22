@@ -2,7 +2,7 @@ import moment from 'moment'
 import { FaImage } from 'react-icons/fa'
 import Layout from '@/components/Layout'
 import Modal from '@/components/Modal'
-
+import ImageUpload from '@/components/ImageUpload'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -59,6 +59,14 @@ export default function EditEventPage({ evt }) {
         const { name, value } = e.target
         setValues({ ...values, [name]: value })
     }
+
+    const imageUploaded = async (e) => {
+        const res = await fetch(`${API_URL}/events/${evt.id}`)
+        const data = await res.json()
+        setImagePreview(data.image.formats.thumbnail.url)
+        setShowModal(false)
+      }
+    
     return (
         <Layout title='Add New Event'>
             <Link href='/events'>Go Back</Link>
@@ -157,7 +165,7 @@ export default function EditEventPage({ evt }) {
               </div>
         
               <Modal show={showModal} onClose={() => setShowModal(false)}>
-            IMAGE UPLOAD
+              <ImageUpload evtId={evt.id} imageUploaded={imageUploaded} />
               </Modal>
         </Layout >
     )
