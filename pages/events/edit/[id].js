@@ -1,6 +1,8 @@
 import moment from 'moment'
 import { FaImage } from 'react-icons/fa'
 import Layout from '@/components/Layout'
+import Modal from '@/components/Modal'
+
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -23,6 +25,9 @@ export default function EditEventPage({ evt }) {
 
     const [imagePreview, setImagePreview] = useState
         (evt.image ? evt.image.formats.thumbnail.url : null)
+   
+    const [showModal, setShowModal] = useState(false)
+    
     const router = useRouter()
 
     const handleSubmit = async (e) => {
@@ -141,10 +146,19 @@ export default function EditEventPage({ evt }) {
                 <Image src={imagePreview} height={100} width={170} />
             ) : <div>
                 <p>No Image Uploaded</p></div>}
-            
-                <button className='btn-secondary btn-icon'>
-                <FaImage /> Set Image
-              </button>
+           
+                <div>
+                <button
+                  onClick={() => setShowModal(true)}
+                  className='btn-secondary btn-icon'
+                >
+                  <FaImage /> Set Image
+                </button>
+              </div>
+        
+              <Modal show={showModal} onClose={() => setShowModal(false)}>
+            IMAGE UPLOAD
+              </Modal>
         </Layout >
     )
 }
