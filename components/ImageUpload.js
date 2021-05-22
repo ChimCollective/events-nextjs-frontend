@@ -6,8 +6,10 @@ export default function ImageUpload({ evtId, imageUploaded }) {
   const [image, setImage] = useState(null)
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault()
     const formData = new FormData()
+    
     formData.append('files', image)
     formData.append('ref', 'events')
     formData.append('refId', evtId)
@@ -17,7 +19,7 @@ export default function ImageUpload({ evtId, imageUploaded }) {
       method: 'POST',
       body: formData,
     })
-
+    console.log('Show FormData', FormData )
     if (res.ok) {
       imageUploaded()
     }
