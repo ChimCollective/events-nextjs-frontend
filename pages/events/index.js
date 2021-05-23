@@ -20,6 +20,12 @@ export default function EventsPage({ events, page, total }) {
           <a className='btn-secondary'>Prev</a>
         </Link>
       )}
+
+      {page < lastPage && (
+        <Link href={`/events?page=${page + 1}`}>
+          <a className='btn-secondary'>Next</a>
+        </Link>
+      )}
     </Layout>
   );
 }
