@@ -30,16 +30,7 @@ export default function EventPage({ evt }) {
   return (
     <Layout>
       <div className={styles.event}>
-        <div className={styles.controls}>
-          <Link href={`/events/edit/${evt.id}`}>
-            <a>
-              <FaPencilAlt /> Edit Event
-            </a>
-          </Link>
-          <a href='#' className={styles.delete} onClick={deleteEvent}>
-            <FaTimes /> Delete Event
-          </a>
-        </div>
+        
         <span>
           {new Date(evt.date).toLocaleDateString('en-US')} at {evt.time}
         </span>
